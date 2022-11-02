@@ -1,5 +1,13 @@
 //You can add and export any helper functions you want here. If you aren't using any, then you can just leave this file as is.
+const {ObjectID, ObjectId} = require('mongodb');
 
+const checkID = (id) => {
+    id = id.trim();
+    if (!ObjectId.isValid(id))
+        throw "Object ID is not valid!";
+    else
+        return id;
+};
 const validNameFormat = (name) => {
     return /^([a-zA-Z]{3,100}\s[a-zA-Z]{3,100})$/.test(name.trim());
 };
@@ -19,6 +27,7 @@ const checkTitle = (title) => { // done
         else if (!/^[a-zA-Z0-9\s]+$/.test(title))
             throw "Title can only contains letters and numbers!";
     }
+    return title;
 
 };
 
@@ -31,6 +40,7 @@ const checkPlot = (plot) => { // done
         throw "Plot input cannot be a EMPTY string!";
 
     plot = plot.trim();
+    return plot;
 
 };
 
@@ -51,6 +61,9 @@ const checkGenres = (genres) => { // done
                 temp = temp.trim();
         }
     }
+    return genres.map(element => {
+        return element.trim();
+    });
 };
 
 const checkRating = (rating) => { // done
@@ -68,6 +81,7 @@ const checkRating = (rating) => { // done
         if (!validRating.includes(rating))
             throw "The rating is not valid (Case sensitive)!";
     }
+    return rating;
 };
 
 const checkStudio = (studio) => { // done
@@ -85,6 +99,7 @@ const checkStudio = (studio) => { // done
         else if (!/^[a-zA-Z\s]+$/.test(studio))
             throw "Studio can only contains letters!";
     }
+    return studio;
 };
 
 const checkDirector = (director) => { // done
@@ -100,6 +115,7 @@ const checkDirector = (director) => { // done
         if (!validNameFormat(director))
             throw "The name format is NOT valid!";
     }
+    return director;
 };
 
 const checkCastMembers = (castMembers) => { // done
@@ -119,7 +135,11 @@ const checkCastMembers = (castMembers) => { // done
             else
                 temp = temp.trim();
         }
+
     }
+    return castMembers.map(element => {
+        return element.trim();
+    });
 };
 
 const checkDateReleased = (date) => { // done
@@ -148,6 +168,7 @@ const checkDateReleased = (date) => { // done
         else if (days > monthDays[month - 1] || days === 0)
             throw "Days input is NOT valid!";
     }
+    return date;
 };
 
 const checkRuntime = (runtime) => { // done
@@ -167,9 +188,81 @@ const checkRuntime = (runtime) => { // done
         else if (Number((runtime.substring(0, runtime.indexOf('h')))) < 1)
             throw "The runtime must be longer than one hour!";
     }
+    return runtime;
 };
 
+
+// ****************************
+// Validation check for reviews
+// ****************************
+
+
+const checkReviewTitle = (reviewTitle) => { // done
+    if (!reviewTitle)
+        throw "All fields need to have valid values";
+    else if (typeof reviewTitle !== "string")
+        throw "ReviewTitle input must be a string!";
+    else if (reviewTitle.trim().length === 0)
+        throw "ReviewTitle input cannot be a EMPTY string!";
+    else {
+        reviewTitle = reviewTitle.trim();
+    }
+    return reviewTitle;
+};
+
+const checkReviewerName = (reviewerName) => { // done
+    if (!reviewerName)
+        throw "All fields need to have valid values";
+    else if (typeof reviewerName !== "string")
+        throw "ReviewerName input must be a string!";
+    else if (reviewerName.trim().length === 0)
+        throw "ReviewerName input cannot be a EMPTY string!";
+    else {
+        reviewerName = reviewerName.trim();
+
+        if (!validNameFormat(reviewerName))
+            throw "The name format is NOT valid!";
+    }
+    return reviewerName;
+};
+
+const checkReview = (review) => { // done
+    if (!review)
+        throw "All fields need to have valid values";
+    else if (typeof review !== "string")
+        throw "Review input must be a string!";
+    else if (review.trim().length === 0)
+        throw "Review input cannot be a EMPTY string!";
+    else {
+        review = review.trim();
+    }
+    return review;
+};
+
+const checkReviewRating = (rating) => { // done
+    if (!rating)
+        throw "All fields need to have valid values";
+    else if (typeof rating !== "number")
+        throw "Review rating input must be a string!";
+        // else if (rating.trim().length === 0)
+    //     throw "Review rating input cannot be a EMPTY string!";
+    else {
+        // rating = rating.trim();
+
+        if (rating < 1 || rating > 5)
+            throw "Review rating input must be a number from 1 to 5!";
+        else if(rating % 1 !== 0)
+            if(!/^([1-4]{1}.[1-9]{1})$/.test(rating))
+                throw "Rating can only use one decimal place!";
+
+    }
+    return rating;
+};
+
+
 module.exports = {
+    checkID,
+
     checkTitle,
     checkPlot,
     checkGenres,
@@ -178,5 +271,10 @@ module.exports = {
     checkDirector,
     checkCastMembers,
     checkDateReleased,
-    checkRuntime
+    checkRuntime,
+    // Validation check for reviews
+    checkReviewTitle,
+    checkReviewerName,
+    checkReview,
+    checkReviewRating
 };

@@ -4,6 +4,7 @@
   "description": "My lab 6 module",
   "main": "app.js",
   "scripts": {
+    "seed": "node ./seed.js",
     "start": "node app.js"
   },
   "author": "Mao Li 10473334",
