@@ -140,6 +140,8 @@ const removeReview = async (reviewId) => {
             allRating += temp.rating;
         }
         movie.overallRating = allRating / movie.reviews.length;
+        if (isNaN(movie.overallRating))
+            movie.overallRating = 0;
 
         await movieCollection.updateOne(
             {_id: ObjectId(movie._id.toString())},

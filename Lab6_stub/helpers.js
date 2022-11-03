@@ -243,16 +243,17 @@ const checkReviewRating = (rating) => { // done
     if (!rating)
         throw "All fields need to have valid values";
     else if (typeof rating !== "number")
-        throw "Review rating input must be a string!";
+        throw "Review rating input must be a number!";
         // else if (rating.trim().length === 0)
     //     throw "Review rating input cannot be a EMPTY string!";
     else {
         // rating = rating.trim();
 
+
         if (rating < 1 || rating > 5)
             throw "Review rating input must be a number from 1 to 5!";
-        else if(rating % 1 !== 0)
-            if(!/^([1-4]{1}.[1-9]{1})$/.test(rating))
+        else if (rating % 1 !== 0)
+            if (!/^([1-4]{1}.[1-9]{1})$/.test(rating))
                 throw "Rating can only use one decimal place!";
 
     }

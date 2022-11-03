@@ -9,6 +9,8 @@ const main = async () => {
     await db.dropDatabase();
 
     console.log("Let's add some movies!");
+    console.log("**********************");
+
 
     const hackers = await movies.createMovie(
         "Hackers",
@@ -213,7 +215,7 @@ const main = async () => {
     //
     // console.log(await reviews.getReview(review._id.toString()));
     //
-    console.log(await reviews.removeReview(reviewrocky23._id.toString()));
+    //console.log(await reviews.removeReview(reviewrocky23._id.toString()));
 
     await connection.closeConnection();
     console.log('Done seeding database!');

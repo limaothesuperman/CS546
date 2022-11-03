@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
-const reviewData = data.reviews;
+//const reviewData = data.reviews;
 const movieData = data.movies;
 const helpers = require("../helpers");
 
@@ -82,11 +82,53 @@ router
             await movieData.removeMovie(req.params.movieId);
             res.json({movieId: req.params.movieId, deleted: true});
         } catch (e) {
-            return res.status(404).json({error: "Movie not found!"});
+            return res.status(500).json({error: e});
         }
     })
     .put(async (req, res) => {
-        //code here for PUT
+        try {
+            req.params.movieId = helpers.checkID(req.params.movieId);
+        } catch (e) {
+            return res.status(400).json({error: e});
+        }
+        try {
+            await movieData.getMovieById(req.params.movieId);
+        } catch (e) {
+            return res.status(404).json({error: "Movie not found!"});
+        }
+
+        let updatedMovieInfo = req.body;
+        try {
+            updatedMovieInfo.title = helpers.checkTitle(updatedMovieInfo.title);
+            updatedMovieInfo.plot = helpers.checkPlot(updatedMovieInfo.plot);
+            updatedMovieInfo.genres = helpers.checkGenres(updatedMovieInfo.genres);
+            updatedMovieInfo.rating = helpers.checkRating(updatedMovieInfo.rating);
+            updatedMovieInfo.studio = helpers.checkStudio(updatedMovieInfo.studio);
+            updatedMovieInfo.director = helpers.checkDirector(updatedMovieInfo.director);
+            updatedMovieInfo.castMembers = helpers.checkCastMembers(updatedMovieInfo.castMembers);
+            updatedMovieInfo.dateReleased = helpers.checkDateReleased(updatedMovieInfo.dateReleased);
+            updatedMovieInfo.runtime = helpers.checkRuntime(updatedMovieInfo.runtime);
+
+        } catch (e) {
+            return res.status(400).json({error: e});
+        }
+        try {
+            const updateMovie = await movieData.updateMovie(
+                req.params.movieId,
+                updatedMovieInfo.title,
+                updatedMovieInfo.plot,
+                updatedMovieInfo.genres,
+                updatedMovieInfo.rating,
+                updatedMovieInfo.studio,
+                updatedMovieInfo.director,
+                updatedMovieInfo.castMembers,
+                updatedMovieInfo.dateReleased,
+                updatedMovieInfo.runtime,
+            );
+            res.json(updateMovie);
+        } catch (e) {
+            res.sendStatus(500);
+        }
     });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 {
-    "mongoConfig": {
-      "serverUrl": "mongodb://localhost:27017/",
-      "database": "Mao_Li_lab6"
-    }
+  "mongoConfig": {
+    "serverUrl": "mongodb://localhost:27017/",
+    "database": "Mao_Li_lab6"
   }
+}
