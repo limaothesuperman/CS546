@@ -1,0 +1,12 @@
+{
+  "name": "cs-546-lab-8",
+  "version": "1.0.0",
+  "description": "My lab 8 module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+
+  },
+  "author": "Mao Li 10473334",
+  "license": "ISC"
+}
