@@ -1,0 +1,14 @@
+{
+  "name": "cs-546-lab-9",
+  "version": "1.0.0",
+  "description": "My lab 9 module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Mao Li 10473334",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

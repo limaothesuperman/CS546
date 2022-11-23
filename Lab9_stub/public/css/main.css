@@ -1,0 +1,64 @@
+/*
+You will style your page using at least 10 CSS selectors for general CSS styling. You will place the CSS in its own file. You must style the is-green class to make text have a color of #00E676 and is-red class to make text have a color of #FF3D00.
+*/
+
+.is-red {
+    color: #FF3D00;
+}
+
+.is-green {
+    color: #00E676;
+}
+
+h1:hover {
+    color: cornflowerblue;
+}
+
+h1 {
+    font-size: 50pt;
+    text-align: center;
+    color: brown;
+}
+
+footer {
+    font-size: 15pt;
+    text-align: center;
+    color: black;
+}
+
+header {
+    font-size: 15pt;
+    text-align: center;
+    color: black;
+}
+
+form {
+    font-size: 30pt;
+    text-align: center;
+
+}
+
+div {
+    color: red;
+    font-size: 30pt;
+    text-align: center;
+
+}
+
+ul {
+    font-size: 25pt;
+    text-align: center;
+    list-style-position: inside;
+}
+
+label {
+    color: black;
+}
+
+label:hover {
+    color: rebeccapurple;
+}
+
+button:hover {
+    color: orangered;
+}

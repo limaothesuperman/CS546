@@ -1,1 +1,92 @@
 /*This file should have CSS rulesets */
+p {
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-size: 18pt;
+}
+
+dt {
+    font-size: 21pt;
+    color: red;
+}
+
+dt:hover {
+    color: blueviolet;
+}
+
+
+dd {
+    font-size: 18pt;
+    color: cornflowerblue;
+}
+
+dd:hover {
+    color: orange;
+}
+
+h2 {
+    color: blue;
+}
+
+p.intro1 {
+    font-family: "Helvetica", sans-serif;
+}
+
+a:visited {
+    color: darkorange;
+}
+
+button:hover {
+    color: orangered;
+}
+
+a:hover {
+    color: red;
+}
+
+footer {
+    color: black;
+}
+
+header {
+    color: black;
+}
+
+form {
+    color: brown;
+}
+
+p {
+    background: greenyellow;
+}
+
+body {
+    text-align: center;
+    background: aquamarine;
+}
+
+h1 {
+    color: red;
+    border-top: 1px solid red;
+    border-bottom: 1px solid blue;
+    border-right: 1px solid blue;
+    border-left: 1px solid red;
+}
+
+h1:hover {
+    color: cornflowerblue;
+}
+
+p:hover {
+    color: purple;
+}
+
+h2:hover {
+    color: blueviolet;
+}
+
+main {
+    background: wheat;
+    text-align: center;
+
+}
